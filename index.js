@@ -6,6 +6,7 @@ const ingresarProductos = (productos) => {
 
   console.log(carrito);
   listarProductos(carrito);
+  buscarProducto(carrito);
 };
 
 const listarProductos = (carrito) => {
@@ -14,6 +15,10 @@ const listarProductos = (carrito) => {
   }
 };
 
-const buscarProducto = () => {};
+const buscarProducto = (carrito) => {
+  const nuevoProducto = carrito.filter((producto) => {});
+
+  console.log(nuevoProducto);
+};
 
 ingresarProductos(productos);
