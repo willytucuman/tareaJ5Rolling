@@ -1,8 +1,11 @@
 const productos = ['television','celular','tablet','reloj']
 let  carrito = [];
-let productosBuscados = []
+
+
 function ingresandoProductos(productos){
-    carrito.push(productos)
+    for(i=0;i<productos.length;i++){
+        carrito.push(productos[i])
+    }
 }
 function listandoProductos(carrito){
 for(i=0;i<carrito.length;i++){
@@ -11,27 +14,32 @@ for(i=0;i<carrito.length;i++){
 }
 
 function buscandoProducto(producto){
+    let productosBuscados = []
     for(i=0;i<carrito.length;i++){
         producto.toLowerCase()
-        if(producto == "television"||producto=="celular"||producto=="tablet"||producto=="reloj"){
+        if(producto === carrito[i]){
             productosBuscados.push(producto)
         }
     }
+    return productosBuscados;
 }
 
 function filtrarProductos(palabraClave) {
-    return carrito.filter(producto => {
-      return producto.toLowerCase().includes(palabraClave.toLowerCase());
-    });
-  }
-
-function eliminandoProducto(producto){
-    return carrito.forEach(p=> {
-        producto.toLowerCase()
-        if(producto === p){
-            carrito.pop(p)
-            console.log("ahora tu carrito es:" + {carrito})
-        }
-    }
-)
+    return carrito.filter(producto => producto.toLowerCase().includes(palabraClave.toLowerCase()))
 }
+
+function eliminandoProducto(buscando){
+    let productIndex =  carrito.findIndex(p=> p===buscando )
+    if(productIndex == -1){
+      return  console.log("producto no encontrado")
+    }
+    carrito.splice(productIndex,1)
+    return console.log("producto eliminado con exito")
+}
+ ingresandoProductos(productos)
+console.log(filtrarProductos("tele"))
+// console.log(listandoProductos(productos))
+eliminandoProducto("television")
+console.log(carrito)
+
+
